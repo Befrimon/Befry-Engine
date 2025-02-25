@@ -9,7 +9,7 @@ namespace befry
 	{
 	public:
 		Dot(std::string_view obj_name, Vector2 pos);
-		~Dot() override = default;
+		~Dot() override;
 
 		void draw() override;
 	};

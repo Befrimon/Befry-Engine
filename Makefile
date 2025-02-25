@@ -1,8 +1,7 @@
 install:
 	cmake -S . -B build
 	cmake --build build
-	mkdir -p /usr/include/befry_engine
-	cp include/*.h /usr/include/befry_engine/
+	cp -rf include/* /usr/include
 	cp build/libbefry_engine.a /usr/lib/
 
 uninstall:

@@ -16,10 +16,10 @@ namespace befry
 		Vector2 position;
 
 	public:
-		GameObject(std::string_view obj_name, Vector2 pos);
+		GameObject(std::string_view obj_name, const Vector2& pos): name(obj_name), position(pos) {}
 		virtual ~GameObject() = default;
 
-		virtual void draw();
+		virtual void draw() = 0;
 	};
 }
 

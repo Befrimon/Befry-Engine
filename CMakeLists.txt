@@ -9,4 +9,4 @@ set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB PROJECT_SRC "lib/*.cpp")
 add_library(befry_engine STATIC ${PROJECT_SRC})
-target_include_directories(befry_engine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(befry_engine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/befry_engine)

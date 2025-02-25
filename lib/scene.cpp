@@ -1,15 +1,29 @@
 #include "scene.h"
 #include "renderer.h"
 
-befry::Scene::Scene(const Vector2 size): size(size)
+#include <iostream>
+
+befry::Scene::Scene(const Vector2& size): size(size)
+{
+	redraw();
+}
+befry::Scene::~Scene() = default;
+
+void befry::Scene::render() const
+{
+	for (const auto& child : children)
+		child->draw();
+}
+
+void befry::Scene::redraw() const
 {
 	Renderer::clearScreen();
 	Renderer::drawRect({0, 0}, size, false);
 }
-befry::Scene::~Scene() = default;
 
-void befry::Scene::render()
+void befry::Scene::addChild(std::shared_ptr<GameObject> child)
 {
-	//for (GameObject child : children)
-	//	child.draw();
+	children.push_back(child);
 }
+
+

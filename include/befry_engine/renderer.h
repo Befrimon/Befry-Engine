@@ -14,7 +14,7 @@ namespace befry
 		enum COLORS
 		{
 			BLACK, RED, GREEN, YELLOW, BLUE,
-			PURPLE, CYAN, GRAY, _TODO_, DEFAULT
+			PURPLE, CYAN, GRAY, __TODO, DEFAULT
 		};
 
 	protected:
@@ -23,8 +23,8 @@ namespace befry
 
 	public:
 		static void clearScreen();
-		static void drawSymbol(Vector2 pos, std::string_view sym);
-		static void drawRect(Vector2 pos, Vector2 size, bool filled);
+		static void drawSymbol(const Vector2& pos, std::string_view sym);
+		static void drawRect(const Vector2& pos, const Vector2& size, const bool& filled);
 
 		static void setFGColor(const COLORS& color);
 		static void setBGColor(const COLORS& color);

@@ -1,20 +1,28 @@
 #include "main_loop.h"
 
-#ifndef __linux__
-#include <unistd.h>
+#include <iostream>
+
+#ifdef __linux__
+	#include <unistd.h>
 #elif _WIN32
-#include <windows.h>
+	#include <windows.h>
 #endif
 
-void befry::MainLoop::update(double delta = 1e6 / game_fps)
+int befry::MainLoop::game_fps = 5;
+std::shared_ptr<befry::Scene> befry::MainLoop::current_scene = nullptr;
+
+void befry::MainLoop::update()
 {
-	#ifndef __linux__
-		sleep(delta);
+	#ifdef __linux__
+		sleep(1.0 / game_fps);
 	#elif _WIN32
-		Sleep(delta);
+		Sleep(1.0 / game_fps);
 	#endif
 
-	current_scene->render();
+	std::cout << "\033[0;0f";
+	if (current_scene) current_scene->render();
+
+	update();
 }
 
 /* Setters */

@@ -15,7 +15,7 @@ namespace befry
 		static std::shared_ptr<Scene> current_scene;
 
 	public:
-		static void update(double delta);
+		static void update();
 
 		/* Setters */
 		static void setFPS(const int& fps);

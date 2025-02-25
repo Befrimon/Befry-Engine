@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include <vector>
+#include <memory>
 
 /* Befry Engine includes */
 #include "types.h"
@@ -13,13 +14,16 @@ namespace befry
 	{
 	protected:
 		Vector2 size;
-		// std::vector<GameObject> children;
+		std::vector<std::shared_ptr<GameObject>> children;
 
 	public:
-		explicit Scene(Vector2 size);
+		explicit Scene(const Vector2& size);
 		~Scene();
 
-		void render();
+		void render() const;
+		void redraw() const;
+
+		void addChild(std::shared_ptr<GameObject> child);
 	};
 }
 

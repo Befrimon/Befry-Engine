@@ -12,7 +12,7 @@ void befry::Renderer::clearScreen()
 }
 
 
-void befry::Renderer::drawSymbol(Vector2 pos, std::string_view sym)
+void befry::Renderer::drawSymbol(const Vector2& pos, std::string_view sym)
 {
 	std::cout
 		<< "\033[" << pos.Y << ";" << pos.X << "f"
@@ -20,7 +20,7 @@ void befry::Renderer::drawSymbol(Vector2 pos, std::string_view sym)
 		<< sym << "\033[0m";
 }
 
-void befry::Renderer::drawRect(Vector2 pos, Vector2 size, bool filled)
+void befry::Renderer::drawRect(const Vector2& pos, const Vector2& size, const bool& filled)
 {
 	std::vector<std::string> symbols;
 	if (filled) symbols = {"▗", "▝", "▖", "▘", "▐", "▌", "▄", "▀", "█"};
@@ -31,7 +31,7 @@ void befry::Renderer::drawRect(Vector2 pos, Vector2 size, bool filled)
 		{
 			std::cout
 				<< "\033[" << pos.Y+y << ";" << pos.X+x << "f"
-				<< "\033[0;" << 30 + fg_color << ";" << 40 + bg_color << "m";
+				<< "\033[" << 30 + fg_color << ";" << 40 + bg_color << "m";
 			if (x == 1 && y == 1) std::cout << symbols[0];
 			else if (x == 1 && y == size.Y+2) std::cout << symbols[1];
 			else if (x == size.X+2 && y == 1) std::cout << symbols[2];
