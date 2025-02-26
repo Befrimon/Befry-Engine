@@ -8,10 +8,11 @@ namespace befry
 	class Dot : public GameObject
 	{
 	public:
-		Dot(std::string_view obj_name, Vector2 pos);
+		Dot(Vector2 pos);
 		~Dot() override;
 
 		void draw() override;
+		void move(Vector2 delta);
 	};
 }
 

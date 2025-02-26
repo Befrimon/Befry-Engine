@@ -6,6 +6,7 @@
 befry::Renderer::COLORS befry::Renderer::fg_color = DEFAULT;
 befry::Renderer::COLORS befry::Renderer::bg_color = DEFAULT;
 
+
 void befry::Renderer::clearScreen()
 {
 	std::cout << "\033[0m\033[2J\033[1;1f";

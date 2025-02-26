@@ -12,11 +12,10 @@ namespace befry
 	class GameObject
 	{
 	protected:
-		std::string name;
 		Vector2 position;
 
 	public:
-		GameObject(std::string_view obj_name, const Vector2& pos): name(obj_name), position(pos) {}
+		GameObject(const Vector2& pos): position(pos) {}
 		virtual ~GameObject() = default;
 
 		virtual void draw() = 0;
