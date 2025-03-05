@@ -1,4 +1,4 @@
-# Befry Engine
+# Befry's Game Framework
 *Open-source C++ framework for text-based games*
 
 Befry Engine is ~~cross-platform~~ framework for building text-based games on C++. It works on Linux and ~~Windows~~ (in-dev)
@@ -20,32 +20,45 @@ sudo make install
 ## How to use
 **Simple example**
 ```C++
-#include <befry_engine.h>
+#include <bg_framework.h>
+
+class Dot : public bgf::Sprite
+{
+public:
+	Dot(const bgf::Vector2 &position, bgf::Texture texture) : Sprite(position, std::move(texture)) {}
+
+	void move(const bgf::Vector2 &delta)
+	{
+		clear();
+		position += delta;
+	}
+};
 
 int main()
 {
-	auto scene = befry::Event::addScene("main", {80, 40});
-	scene->addChild<befry::Dot>("dot", befry::Vector2{10, 10});
+	auto scene = bgf::Renderer::addScene("main", bgf::Vector2{160, 40});
+	scene->addChild<Dot>("dot", bgf::Vector2{10, 10}, bgf::Texture("dot"));
 
 	while (true)
 	{
-		switch (befry::Event::getInput())
+		switch (bgf::Event::getInput())
 		{
-			case befry::Event::KEY_Q: return 0;
-			case befry::Event::KEY_UP:
-				scene->getChild<befry::Dot>("dot")->move({0, -1}); break;
-			case befry::Event::KEY_DOWN:
-				scene->getChild<befry::Dot>("dot")->move({0, 1}); break;
-			case befry::Event::KEY_RIGHT:
-				scene->getChild<befry::Dot>("dot")->move({1, 0}); break;
-			case befry::Event::KEY_LEFT:
-				scene->getChild<befry::Dot>("dot")->move({-1, 0}); break;
+			case bgf::Event::KEY_Q: scene->close(); return 0;
+			case bgf::Event::KEY_UP:
+				scene->getChild<Dot>("dot")->move({0, -1}); break;
+			case bgf::Event::KEY_DOWN:
+				scene->getChild<Dot>("dot")->move({0, 1}); break;
+			case bgf::Event::KEY_RIGHT:
+				scene->getChild<Dot>("dot")->move({1, 0}); break;
+			case bgf::Event::KEY_LEFT:
+				scene->getChild<Dot>("dot")->move({-1, 0}); break;
+			default: break;
 		}
 
-		befry::Event::update();
+		bgf::Event::update();
+		scene->render();
 	}
 }
-
 ```
 **Build your game**
 ```
