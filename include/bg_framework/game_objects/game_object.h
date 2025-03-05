@@ -1,13 +1,10 @@
 #ifndef GAME_OBJECT_H
 #define GAME_OBJECT_H
 
-#include <string>
-#include <string_view>
-
 /* Befry Engine includes */
-#include "types.h"
+#include "../types/vector2.h"
 
-namespace befry
+namespace bgf
 {
 	class GameObject
 	{
@@ -15,7 +12,7 @@ namespace befry
 		Vector2 position;
 
 	public:
-		GameObject(const Vector2& pos): position(pos) {}
+		explicit GameObject(const Vector2& position): position(position) {}
 		virtual ~GameObject() = default;
 
 		virtual void draw() = 0;

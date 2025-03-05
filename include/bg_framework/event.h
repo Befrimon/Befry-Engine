@@ -8,7 +8,7 @@
 /* Befry Engine includes */
 #include "scene.h"
 
-namespace befry
+namespace bgf
 {
 	class Event
 	{
@@ -22,8 +22,6 @@ namespace befry
 
 	protected:
 		static int game_fps;
-		static std::unordered_map<std::string, std::shared_ptr<Scene>> scenes;
-		static std::string current_scene;
 
 		static std::future<int> input;
 		static int input_res;
@@ -31,10 +29,6 @@ namespace befry
 	public:
 		static void update();
 		static int getInput();
-
-		static std::shared_ptr<Scene> addScene(std::string name, Vector2 size);
-		static std::shared_ptr<Scene> changeScene(std::string name);
-		static std::shared_ptr<Scene> getActiveScene();
 
 		static void setFPS(const int& fps);
 		// static void setScene(std::shared_ptr<Scene> scn);

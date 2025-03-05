@@ -6,10 +6,10 @@
 #include <stdexcept>
 
 /* Befry Engine includes */
-#include "types.h"
-#include "game_object.h"
+#include "types/vector2.h"
+#include "game_objects/game_object.h"
 
-namespace befry
+namespace bgf
 {
 	class Scene
 	{
@@ -23,21 +23,16 @@ namespace befry
 
 		void render() const;
 		void redraw() const;
+		void close() const;
 
 		template<typename T, typename... Args>
-		void addChild(std::string name, Args... args)
-		{
-			if (children.find(name) != children.end())
-				throw std::invalid_argument("Children with name `" + name + "` already exists in this scene!");
-			children[name] = std::make_shared<T>(args...);
-		}
+		void addChild(const std::string &name, Args... args);
 
 		template<typename T>
-		std::shared_ptr<T> getChild(std::string name)
-		{
-			return std::static_pointer_cast<T>(children[name]);
-		}
+		std::shared_ptr<T> getChild(const std::string &name);
 	};
 }
+
+#include "scene.hpp"
 
 #endif

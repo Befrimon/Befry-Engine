@@ -6,7 +6,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-befry::Scene::Scene(const Vector2& size): size(size)
+bgf::Scene::Scene(const Vector2& size): size(size)
 {
 	termios oldt;
 	tcgetattr(STDIN_FILENO, &oldt);
@@ -17,17 +17,24 @@ befry::Scene::Scene(const Vector2& size): size(size)
 	std::cout << "\e[?25l";
 	redraw();
 }
-befry::Scene::~Scene() = default;
+bgf::Scene::~Scene() = default;
 
-void befry::Scene::render() const
+void bgf::Scene::render() const
 {
+	Renderer::drawRect({0, 0}, size, false);
 	for (const auto&[key, child] : children)
 		child->draw();
 	std::cout << "\033[" << size.Y+2 << ";" << size.X+2 << "f";
 }
 
-void befry::Scene::redraw() const
+void bgf::Scene::redraw() const
 {
 	Renderer::clearScreen();
 	Renderer::drawRect({0, 0}, size, false);
+}
+
+void bgf::Scene::close() const
+{
+	system("stty cooked");
+	std::cout << "\e[?25h";
 }

@@ -1,12 +1,12 @@
 install:
 	cmake -S . -B build
-	cmake --build build
+	cmake --build build -j 4
 	cp -rf include/* /usr/include
-	cp build/libbefry_engine.a /usr/lib/
+	cp build/libbg_framework.a /usr/lib/
 
 uninstall:
-	rm -rf /usr/include/befry_engine
-	rm /usr/lib/libbefry_engine.a
+	rm -rf /usr/include/bg_framework
+	rm /usr/lib/libbg_framework.a
 
 clean:
 	rm -rf build
