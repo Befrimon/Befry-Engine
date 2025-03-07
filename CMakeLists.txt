@@ -8,8 +8,8 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(Threads REQUIRED)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread" )
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-file(GLOB PROJECT_SRC "lib/*.cpp")
+file(GLOB_RECURSE PROJECT_SRC "lib/*.cpp")
 add_library(${PROJECT_NAME} STATIC ${PROJECT_SRC})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include/bg_framework)

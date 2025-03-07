@@ -51,4 +51,9 @@ int bgf::Event::getInput()
 	return input_res;
 }
 
+int bgf::Event::getFPS()
+{
+	return game_fps;
+}
+
 

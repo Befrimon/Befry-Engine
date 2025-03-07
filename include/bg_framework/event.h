@@ -31,7 +31,7 @@ namespace bgf
 		static int getInput();
 
 		static void setFPS(const int& fps);
-		// static void setScene(std::shared_ptr<Scene> scn);
+		static int getFPS();
 
 	};
 }

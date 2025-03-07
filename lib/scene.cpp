@@ -21,20 +21,25 @@ bgf::Scene::~Scene() = default;
 
 void bgf::Scene::render() const
 {
-	Renderer::drawRect({0, 0}, size, false);
-	for (const auto&[key, child] : children)
-		child->draw();
+	Renderer::drawRect({0, 0}, size, false, true);
+	for (const std::pair<std::string, std::shared_ptr<GameObject>> child : children)
+		child.second->draw();
 	std::cout << "\033[" << size.Y+2 << ";" << size.X+2 << "f";
 }
 
 void bgf::Scene::redraw() const
 {
 	Renderer::clearScreen();
-	Renderer::drawRect({0, 0}, size, false);
+	Renderer::drawRect({0, 0}, size, false, true);
 }
 
 void bgf::Scene::close() const
 {
 	system("stty cooked");
 	std::cout << "\e[?25h";
+}
+
+bgf::Vector2 bgf::Scene::get_size() const
+{
+	return size;
 }

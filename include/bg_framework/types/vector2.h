@@ -10,6 +10,7 @@ namespace bgf
 		bool doubledx;
 
 		Vector2(const int &X, const int &Y);
+		[[nodiscard]]
 		float length() const;
 
 		/* Assigment operators */

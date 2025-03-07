@@ -3,7 +3,7 @@
 class Dot : public bgf::Sprite
 {
 public:
-	Dot(const bgf::Vector2 &position, bgf::Texture texture) : Sprite(position, std::move(texture)) {}
+	Dot(const bgf::Vector2 &position, const std::string &texture) : Sprite(position, texture) {}
 
 	void move(const bgf::Vector2 &delta)
 	{
@@ -14,8 +14,8 @@ public:
 
 int main()
 {
-	auto scene = bgf::Renderer::addScene("main", bgf::Vector2{160, 40});
-	scene->addChild<Dot>("dot", bgf::Vector2{10, 10}, bgf::Texture("dot"));
+	const auto scene = bgf::Renderer::addScene("main", bgf::Vector2{160, 40});
+	scene->addChild<Dot>("dot", bgf::Vector2{10, 10}, "dot");
 
 	while (true)
 	{

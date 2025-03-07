@@ -12,16 +12,16 @@ namespace bgf
         Texture texture;
 
     public:
-        Sprite(const Vector2 &position, Texture texture);
+        Sprite(const Vector2 &position, const std::string &texture_path);
         ~Sprite() override;
 
-        void draw() override;
-        void clear();
+        void draw() const override;
+        void clear() const;
 
         void set_position(const Vector2 &new_position);
-        void set_texture(const Texture &new_texture);
+        void set_texture(const std::string &new_texture);
 
-        Vector2 get_position() const;
+        [[nodiscard]]
         Vector2 get_size() const;
     };
 }

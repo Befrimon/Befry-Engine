@@ -1,9 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <stdexcept>
 #include <memory>
 #include <unordered_map>
-#include <stdexcept>
 
 /* Befry Engine includes */
 #include "types/vector2.h"
@@ -26,10 +26,13 @@ namespace bgf
 		void close() const;
 
 		template<typename T, typename... Args>
-		void addChild(const std::string &name, Args... args);
+		void addChild(const std::string &name, const Args &...args);
 
 		template<typename T>
 		std::shared_ptr<T> getChild(const std::string &name);
+
+		[[nodiscard]]
+		Vector2 get_size() const;
 	};
 }
 

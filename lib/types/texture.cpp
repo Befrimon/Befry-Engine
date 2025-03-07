@@ -4,6 +4,7 @@
 
 bgf::Texture::Texture(const std::string &filepath): size({0, 0})
 {
+
     std::ifstream fin(filepath);
     while (!fin.eof())
     {

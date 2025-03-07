@@ -15,7 +15,9 @@ namespace bgf
 		explicit GameObject(const Vector2& position): position(position) {}
 		virtual ~GameObject() = default;
 
-		virtual void draw() = 0;
+		virtual void draw() const = 0;
+		[[nodiscard]]
+		virtual Vector2 get_position() const;
 	};
 }
 
